@@ -1,3 +1,62 @@
+Folder structure
+--------------
+
+```
+├──  base
+│   ├── base_model.py   - this file contains the abstract class of the model.
+│   └── base_train.py - this file contains the abstract class of the trainer.
+│
+│
+├── model               -This folder contains any model of your project.
+│   └── example_model.py
+|   └── DLPDE_Model.py -模型的主要部分
+│
+│
+├── trainers             -this folder contains trainers of your project.
+│   └── example_trainer.py
+|   └── Trainer.py      -模型的训练
+
+├──  run.py              - here's the main/s of your project (you may need more than one main.
+                         - 运行全部代码，命令：python run.py -c configs/para.json 
+│  
+├──  data _loader  
+│    └── data_loader.py  - here's the data_generator that responsible for all data handling.
+                         -训练数据的生成与数据集构建
+│ 
+└── utils
+     ├── logger.py
+     └── config.py
+     └── dirs.py
+     └── utils.py
+
+```
+运行前先将config.py中的process_config函数中的os.path.join后的目录修改为自己的目录。模型的运行结果和参数保存在该目录下
+#tensorborad 运行：
+cd experiments/exp_name/summary/ 
+tensorborad --logdir train/ 
+参数调整修改para.json即可
+
+代码例子：
+对于热传导问题：
+
+$u_t(x,t) = u_{xx}(x,t), -\pi < x < \pi, 0<t<T$
+
+$u(-\pi,t) = u(\pi,t) = 0 , 0< t < T$
+
+$u(x,0) = sin(x)$
+
+T = 1
+
+准确解为：
+
+$u(x,t) = e^{-t} sin(x)$
+
+假设v是未知参数,根据数据对v的值进行计算
+
+$u_t(x,t) - v * u_{xx}(x,t), -\pi < x < \pi, 0<t<T$
+
+此时，v的真实值为1
+
 # Tensorflow Project Template
 A simple and well designed structure is essential for any Deep Learning project, so after a lot of practice and contributing in tensorflow projects here's a tensorflow project template that combines   **simplcity**, **best practice for folder structure** and **good OOP design**.
 The main idea is that there's much stuff you do every time you start your tensorflow project so wrapping all this shared stuff will help you to change just the core idea everytime you start a new tensorflow project.
