@@ -30,10 +30,15 @@ Folder structure
      └── utils.py
 
 ```
-运行前先将config.py中的process_config函数中的os.path.join后的目录修改为自己的目录。模型的运行结果和参数保存在该目录下
+运行前先将config.py中的process_config函数中的os.path.join后的目录修改为自己的目录。
+
+模型的运行结果和参数保存在该目录下
+
 #tensorborad 运行：
 cd experiments/exp_name/summary/ 
+
 tensorborad --logdir train/ 
+
 参数调整修改para.json即可
 
 代码例子：
